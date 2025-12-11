@@ -1,0 +1,59 @@
+﻿@page "/monkeys"
+<h3>Monkey Encyclopedia</h3>
+
+@if (!MonkeyList.Any())
+{
+    <p><em>No monkeys found</em></p>
+}
+else
+{
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (dynamic monkey in MonkeyList)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="@monkey.Image"
+                         class="card-img-top"
+                         alt="@monkey.Name"
+                         style="height: 250px; object-fit: cover;" />
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-primary">@monkey.Name</h5>
+                        <p class="card-text mt-auto">
+                            <strong>Location:</strong> @monkey.Location
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<style>
+    .card:hover {
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important;
+    }
+</style>
+
+@code {
+    private List<object> MonkeyList => new()
+    {
+        new {
+            Name = "Baboon",
+            Location = "Africa & Asia",
+            Image = "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/baboon.jpg"
+        },
+        new {
+            Name = "Capuchin Monkey",
+            Location = "Central & South America",
+            Image = "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/capuchin.jpg"
+        },
+        new {
+            Name = "Blue Monkey",
+            Location = "Central and East Africa",
+            Image = "https://raw.githubusercontent.com/jamesmontemagno/app-monkeys/master/bluemonkey.jpg"
+        }
+    
+    };
+}
